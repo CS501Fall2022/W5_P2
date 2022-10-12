@@ -7,16 +7,17 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <fragment
+    <LinearLayout
         android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout="@layout/fragment_button"/>
+        android:layout_margin="20dp"/>
 
-<!--    <fragment-->
-<!--        android:id="@+id/images"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:layout="@layout/fragment_image"/>-->
+
+    <LinearLayout
+        android:id="@+id/images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
