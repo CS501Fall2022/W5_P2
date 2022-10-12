@@ -65,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 imgFragment.moveLeft();
             }
         });
+
+        ratings.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                if (b) {
+                    imgFragment.saveRating(v);
+                }
+            }
+        });
     }
 }
