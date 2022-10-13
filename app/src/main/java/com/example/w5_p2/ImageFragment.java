@@ -44,6 +44,15 @@ public class ImageFragment extends android.app.Fragment {
         img = (ImageView) fragmentView.findViewById(R.id.image_view);
         img.setBackgroundResource(images[0]);
         rating = (RatingBar) fragmentView.findViewById(R.id.rating_bar);
+
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                if (b) {
+                    saveRating(v);
+                }
+            }
+        });
     }
 
     public void moveRight(){

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ButtonFragment.ButtonInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,43 +36,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
-        super.onStart();
-        setListeners();
+    public void pressLeft() {
+        FragmentManager fragmentManager = getFragmentManager();
+        ImageFragment imgFragment = (ImageFragment) fragmentManager.findFragmentById(R.id.images);
+
+        imgFragment.moveLeft();
     }
 
-    public void setListeners(){
+    @Override
+    public void pressRight() {
         FragmentManager fragmentManager = getFragmentManager();
-        ButtonFragment btnFragment = (ButtonFragment) fragmentManager.findFragmentById(R.id.buttons);
-        View btnFragmentView = btnFragment.getView();
-        Button left = btnFragmentView.findViewById(R.id.left);
-        Button right = btnFragmentView.findViewById(R.id.right);
-
         ImageFragment imgFragment = (ImageFragment) fragmentManager.findFragmentById(R.id.images);
-        View imgFragmentView  = imgFragment.getView();
-        RatingBar ratings = imgFragmentView.findViewById(R.id.rating_bar);
 
-        right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imgFragment.moveRight();
-            }
-        });
-
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imgFragment.moveLeft();
-            }
-        });
-
-        ratings.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                if (b) {
-                    imgFragment.saveRating(v);
-                }
-            }
-        });
+        imgFragment.moveRight();
     }
 }

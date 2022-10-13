@@ -12,7 +12,10 @@ import android.widget.Button;
 
 public class ButtonFragment extends android.app.Fragment {
 
-
+    interface ButtonInterface {
+        void pressLeft();
+        void pressRight();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,5 +31,19 @@ public class ButtonFragment extends android.app.Fragment {
 
         Button left = (Button) fragmentView.findViewById(R.id.left);
         Button right = (Button) fragmentView.findViewById(R.id.right);
+
+        left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ButtonInterface)getActivity()).pressLeft();
+            }
+        });
+
+        right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((ButtonInterface)getActivity()).pressRight();
+            }
+        });
     }
 }
